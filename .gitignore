@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Dockerfile & requirements
+Dockerfile
+requirements.txt
