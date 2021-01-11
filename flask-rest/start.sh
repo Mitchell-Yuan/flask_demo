@@ -2,6 +2,8 @@
 set -e
 /bin/bash /etc/profile
 
+git pull
+
 rm /etc/nginx/nginx.conf
 cd /flask-rest
 cp nginx.conf /etc/nginx/
