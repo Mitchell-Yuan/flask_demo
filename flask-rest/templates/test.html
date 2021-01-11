@@ -1,0 +1,161 @@
+        <html>
+        <header>
+        <h1 style="color:white;" align=center>Welcome to the API upload page of EBG</h1>
+        <h2 style="color:white;font-size:20px;" align=center>{{bar}}</h2>
+        <HR style="border:3 double #987cb9" width="99.9%" color=white SIZE=2 align=center >
+        </header>
+        <script>
+            function validate_fileupload(fileName) {
+                var allowed_extensions = new Array("xls", "xlsx");
+                var file_extension = fileName.split('.').pop().toLowerCase();
+                // split function will split the filename by dot(.), and pop function will pop the last element from the array which will give you the extension as well. If there will be no extension then it will return the filename.
+                for (var i = 0; i <= allowed_extensions.length; i++) {
+                    if (allowed_extensions[i] == file_extension) {
+                        return true;
+                    // valid file extension
+                }
+            }
+                return false;
+        }
+        function validate() {
+                var UploadFileNamevalue = document.getElementById('fileID').value;
+                return (validate_fileupload(UploadFileNamevalue));
+            }
+        </script>
+        <body style="background-color:teal;">
+            <br>
+                <a href="http://ebg.p1.api.k8sprd-wzs.k8s.wistron.com.cn/static/EBG_DataFormat.xlsx" style="color:white;" align=center><div class="text" style="font-size:25px;">參考文件格式</div></a>
+            <br>
+                <a href="http://ebg.p1.api.k8sprd-wzs.k8s.wistron.com.cn/kpi" style="color:white;"  align=center><div class="text" style="font-size:25px;">數據接口</div></a>
+            <br><br>
+            
+            <form action="http://ebg.p1.api.k8sprd-wzs.k8s.wistron.com.cn/upload" method="post" enctype="multipart/form-data"
+                onsubmit="return validate();" style="font-family:arial;color:white;font-size:20px;" align=center>
+                從Excel上傳資料(XLSX): <br><br><input type="file" style="background:white;" name="file" id='fileID' /><br>
+                <br>
+                <input type="reset" value=" 重置 " />&nbsp;&nbsp;<input type="submit" value=" 確認 " /><br>
+            </form>
+            
+            <br>
+            <h2 style="color:white;" width="50%" align=center>立即更新一笔資料</h2>
+            <HR style="border:3 double #987cb9" width="99.5%" color=white SIZE=2 align=center >
+            <form action="http://ebg.p1.api.k8sprd-wzs.k8s.wistron.com.cn/manual/upload" method="post" style="font-family:arial;color:white;font-size:18px;" align=center>
+                <table style="font-family:arial;color:white;font-size:18px;" align=center>
+                    <tr><td>DATE </td><td><input type="text" id="DATE" name="DATE" list="datelist" placeholder="請選擇"  onmouseover="this.style.borderColor='white';this.style.backgroundColor='plum'" style="width: 106; height: 21" onmouseout="this.style.borderColor='white';this.style.backgroundColor='white'">
+                    <datalist id="datelist">
+                        <option>2020-01-01</option>
+                        <option>2020-02-01</option>
+                        <option>2020-03-01</option>
+                        <option>2020-04-01</option>
+                        <option>2020-05-01</option>
+                        <option>2020-06-01</option>
+                        <option>2020-07-01</option>
+                        <option>2020-08-01</option>
+                        <option>2020-09-01</option>
+                        <option>2020-10-01</option>
+                        <option>2020-11-01</option>
+                        <option>2020-12-01</option>
+                        <option>2021-01-01</option>
+                        <option>2021-02-01</option>
+                        <option>2021-03-01</option>
+                        <option>2021-04-01</option>
+                        <option>2021-05-01</option>
+                        <option>2021-06-01</option>
+                        <option>2021-07-01</option>
+                        <option>2021-08-01</option>
+                        <option>2021-09-01</option>
+                        <option>2021-10-01</option>
+                        <option>2021-11-01</option>
+                        <option>2021-12-01</option>
+                    </datalist>
+                        </td></tr>
+
+                    <tr><td>Month </td><td><input type="text" id="Month" name="Month" list="monthlist" placeholder="請選擇"  onmouseover="this.style.borderColor='white';this.style.backgroundColor='plum'" style="width: 106; height: 21" onmouseout="this.style.borderColor='white';this.style.backgroundColor='white'">
+                    <datalist id="monthlist">
+                        <option>Jan</option>
+                        <option>Feb</option>
+                        <option>Mar</option>
+                        <option>Apr</option>
+                        <option>May</option>
+                        <option>Jun</option>
+                        <option>Jul</option>
+                        <option>Aug</option>
+                        <option>Sep</option>
+                        <option>Oct</option>
+                        <option>Nov</option>
+                        <option>Dec</option>
+                    </datalist>
+                        </td></tr>
+
+                    <tr><td>Plant </td><td><input type="text" id="Plant" name='Plant' list="plantlist" placeholder="請選擇"  onmouseover="this.style.borderColor='white';this.style.backgroundColor='plum'" style="width: 106; height: 21" onmouseout="this.style.borderColor='white';this.style.backgroundColor='white'">
+                    <datalist id="plantlist">
+                        <option>WIH</option>
+                        <option>WZS-1</option>
+                        <option>WCZ</option>
+                        <option>WMX</option>
+                    </datalist>
+                        </td></tr>
+
+                    <tr><td>KPI Category </td><td><input type="text" id="KPI_Category" name='KPI Category' list="categorylist" placeholder="請選擇"  onmouseover="this.style.borderColor='white';this.style.backgroundColor='plum'" style="width: 106; height: 21" onmouseout="this.style.borderColor='white';this.style.backgroundColor='white'">
+                    <datalist id="categorylist">
+                        <option>Cost</option>
+                        <option>Delivered</option>
+                        <option>Productivity</option>
+                        <option>Quality</option>
+                    </datalist>
+                        </td></tr>
+
+                    <tr><td>KPI </td><td><input type="text" id="KPI" name='KPI' list="kpilist" placeholder="請選擇" onmouseover="this.style.borderColor='white';this.style.backgroundColor='plum'" style="width: 106; height: 21" onmouseout="this.style.borderColor='white';this.style.backgroundColor='white'">
+                    <datalist id="kpilist">
+                        <option>Total</option>
+                        <option>UPPH_FA</option>
+                        <option>UPPH_PCBA</option>
+                        <option>VLRR</option>
+                        <option>VoIP</option>
+                        <option>VoIP.</option>
+                        <option>WIP</option>
+                        <option>Wiwynn</option>
+                        <option>YR_FA%</option>
+                        <option>YR_PCBA%</option>
+                        <option>SV.</option>
+                        <option>SV</option>
+                        <option>Storage</option>
+                        <option>Scrap%</option>
+                        <option>Revenue(M NTD)</option>
+                        <option>Output(K PCS)</option>
+                        <option>OEE2%</option>
+                        <option>OBA_PCBA</option>
+                        <option>OBA_FA</option>
+                        <option>MOH Ratio%</option>
+                        <option>IDL_H/C</option>
+                        <option>GPU.</option>
+                        <option>GPU</option>
+                        <option>Expense(M NTD)</option>
+                        <option>E2E DOI</option>
+                        <option>DOI (HUB)</option>
+                        <option>DOA</option>
+                        <option>DL_OT</option>
+                        <option>DL_H/C</option>
+                        <option>Customer Complaint</option>
+                        <option>Card.</option>
+                    </datalist>
+                        </td></tr>
+
+                    <tr><td>Property </td><td><input type="text" id="Property" name='Property' value="" list="propertylist" placeholder="請選擇"  onmouseover="this.style.borderColor='white';this.style.backgroundColor='plum'" style="width: 106; height: 21" onmouseout="this.style.borderColor='white';this.style.backgroundColor='white'">
+                    <datalist id="propertylist">
+                        <option>small</option>
+                        <option>large</option>
+                    </datalist>
+                        </td></tr>
+
+                    <tr><td>Target </td><td><input type="text" id="Target" name='Target' value=""  onmouseover="this.style.borderColor='white';this.style.backgroundColor='plum'" style="width: 106; height: 21" onmouseout="this.style.borderColor='white';this.style.backgroundColor='white'"></td></tr>
+                    <tr><td>Actual </td><td><input type="text" id="Actual" name='Actual' value=""  onmouseover="this.style.borderColor='white';this.style.backgroundColor='plum'" style="width: 106; height: 21" onmouseout="this.style.borderColor='white';this.style.backgroundColor='white'"></td></tr>
+
+                    <tr><td>FCST </td><td><input type="text" id="FCST" name='FCST' value=""  onmouseover="this.style.borderColor='white';this.style.backgroundColor='plum'" style="width: 106; height: 21" onmouseout="this.style.borderColor='white';this.style.backgroundColor='white'"></td></tr>
+                    <tr><td>Commitment </td><td><input type="text" id="Commitment" name='Commitment' value=""  onmouseover="this.style.borderColor='white';this.style.backgroundColor='plum'" style="width: 106; height: 21" onmouseout="this.style.borderColor='white';this.style.backgroundColor='white'"></td></tr>
+                    <tr><td>Shipment </td><td><input type="text" id="Shipment" name='Shipment' value=""  onmouseover="this.style.borderColor='white';this.style.backgroundColor='plum'" style="width: 106; height: 21" onmouseout="this.style.borderColor='white';this.style.backgroundColor='white'"></td></tr>
+                </table>
+                <br><input type="reset" value=" 重置 " />&nbsp;&nbsp;<input type="submit" value=" 確認 " /><br>
+            </form>
+        </body>
+        </html>
