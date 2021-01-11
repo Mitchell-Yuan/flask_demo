@@ -3,7 +3,7 @@ set -e
 /bin/bash /etc/profile
 
 rm /etc/nginx/nginx.conf
-cd /home/saber/flask-rest
+cd /flask-rest
 cp nginx.conf /etc/nginx/
 
 service nginx start
