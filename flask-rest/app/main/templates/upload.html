@@ -1,34 +1,51 @@
 <html>
-    <header>
-        <h1 style="color:white;" align=center>0.0</h1>
-        <h2 style="color:white;font-size:20px;" align=center>{{bar}}</h2>
-        <HR style="border:3 double #987cb9" width="99.9%" color=white SIZE=2 align=center >
-    </header>
-    <script>
-        function validate_fileupload(fileName) {
-            var allowed_extensions = new Array("xls", "xlsx");
-            var file_extension = fileName.split('.').pop().toLowerCase();
-            // split function will split the filename by dot(.), and pop function will pop the last element from the array which will give you the extension as well. If there will be no extension then it will return the filename.
-            for (var i = 0; i <= allowed_extensions.length; i++) {
-                if (allowed_extensions[i] == file_extension) {
-                    return true;
+<header>
+    <h1 style="color:white;" align=center>0.0</h1>
+    <h2 style="color:white;font-size:20px;" align=center>{{bar}}</h2>
+    <HR style="border:3 double #987cb9" width="99.9%" color=white SIZE=2 align=center>
+</header>
+<script>
+    function validate_fileupload(fileName) {
+        var allowed_extensions = new Array("xls", "xlsx");
+        var file_extension = fileName.split('.').pop().toLowerCase();
+        // split function will split the filename by dot(.), and pop function will pop the last element from the array which will give you the extension as well. If there will be no extension then it will return the filename.
+        for (var i = 0; i <= allowed_extensions.length; i++) {
+            if (allowed_extensions[i] == file_extension) {
+                return true;
                 // valid file extension
             }
         }
-            return false;
+        return false;
     }
     function validate() {
-            var UploadFileNamevalue = document.getElementById('fileID').value;
-            return (validate_fileupload(UploadFileNamevalue));
+        var UploadFileNamevalue = document.getElementById('fileID').value;
+        return (validate_fileupload(UploadFileNamevalue));
+    }
+</script>
+<script type="text/javascript" charset="utf-8" src="http://127.0.0.1:5000/static/L2Dwidget.0.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://127.0.0.1:5000/static/L2Dwidget.min.js"></script>
+<script type="text/javascript">
+    L2Dwidget.init({
+        "display": {
+            "superSample": 2,
+            "width": 200,
+            "height": 400,
+            "position": "right",
+            "hOffset": 0,
+            "vOffset": 0
         }
-    </script>
-    <body style="background-color:green;">
+    });
+</script>
+
+<body style="background:url(http://127.0.0.1:5000/static/v1.jfif); background-size:cover ; background-attachment:
+    fixed">
     <br>
-    <form action="{{_upload_}}" method="post" enctype="multipart/form-data"
-        onsubmit="return validate();" style="font-family:arial;color:white;font-size:20px;" align=center>
+    <form action="{{_upload_}}" method="post" enctype="multipart/form-data" onsubmit="return validate();"
+        style="font-family:arial;color:white;font-size:20px;" align=center>
         從Excel上傳資料(XLSX): <br><br><input type="file" style="background:grey;" name="file" id='fileID' /><br>
         <br>
         <input type="reset" value=" 重置 " />&nbsp;&nbsp;<input type="submit" value=" 確認 " /><br>
     </form>
-    </body>
+</body>
+
 </html>
